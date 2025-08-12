@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -31,7 +31,7 @@ const SignUp = () => {
     setError(null);
 
     try {
-      await axios.post("http://localhost:8080/api/auth/register", {
+      await axios.post("https://breizh-report-130fab00c3e0.herokuapp.com/api/auth/register", {
         firstName,
         lastName,
         email,
@@ -59,61 +59,65 @@ const SignUp = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <fieldset className="fieldset bg-base-200 border-base-100 rounded-box w-md mt-[8%] border p-4">
-          <legend className="fieldset-legend text-xl font-noto">
-            Inscription
-          </legend>
-          <label className="label">Prenom</label>
-          <input
-            type="text"
-            className="input rounded-2xl my-2 w-full"
-            placeholder="Prénom"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-          <label className="label">Nom</label>
-          <input
-            type="text"
-            className="input rounded-2xl my-2 w-full"
-            placeholder="Nom"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-          <label className="label">Email</label>
-          <input
-            type="email"
-            className="input rounded-2xl my-2 w-full"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <label className="label">Mot de passe</label>
-          <input
-            type="password"
-            className="input rounded-2xl w-full my-2"
-            placeholder="Mot de passe"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+    <div className="w-10/12 flex justify-center">
+      <form
+        onSubmit={handleSubmit}
+        className="fieldset bg-base-200 border-base-100 rounded-box w-md mt-[8%] border p-4"
+      >
+        <legend className="fieldset-legend text-xl font-noto">
+          Inscription
+        </legend>
+        <label className="label">Prenom</label>
+        <input
+          type="text"
+          className="input rounded-2xl my-2 w-full"
+          placeholder="Prénom"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+        <label className="label">Nom</label>
+        <input
+          type="text"
+          className="input rounded-2xl my-2 w-full"
+          placeholder="Nom"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+        <label className="label">Email</label>
+        <input
+          type="email"
+          className="input rounded-2xl my-2 w-full"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <label className="label">Mot de passe</label>
+        <input
+          type="password"
+          className="input rounded-2xl w-full my-2"
+          placeholder="Mot de passe"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-          <button
-            type="submit"
-            className="rounded-3xl btn btn-neutral mt-4"
-            disabled={loading}
-          >
-            {loading ? (
-              <span className="loading loading-ring loading-md"></span>
-            ) : (
-              "S'inscrire"
-            )}
-          </button>
-        </fieldset>
+        <button
+          type="submit"
+          className="rounded-3xl btn btn-neutral mt-4"
+          disabled={loading}
+        >
+          {loading ? (
+            <span className="loading loading-ring loading-md"></span>
+          ) : (
+            "S'inscrire"
+          )}
+        </button>
+        <Link to="/login" className="rounded-3xl btn btn-white mt-4">
+          Déja un compte ?
+        </Link>
       </form>
 
       {showToast && (
@@ -131,7 +135,7 @@ const SignUp = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

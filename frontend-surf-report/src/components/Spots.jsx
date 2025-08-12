@@ -21,13 +21,15 @@ const Spots = ({ spots }) => {
   }
 
   return (
-    <Carousel>
-      <CarouselContent className="flex justify-center">
+    <Carousel
+      opts={{
+        align: "center",
+        loop: true,
+      }}
+    >
+      <CarouselContent>
         {spots.map((element) => (
-          <CarouselItem
-            className="basis-full md:basis-1/2 min-w-xs lg:basis-1/3 xl:basis-1/4  sm:w-25 md:w-35 lg:w-50 xl:w-full"
-            key={element.id}
-          >
+          <CarouselItem className="md:basis-1/2 lg:basis-1/3" key={element.id}>
             <Link to={`/${createSlug(element.name)}`}>
               <Spot
                 title={element.name}
@@ -38,8 +40,8 @@ const Spots = ({ spots }) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="hover:cursor-pointer" />
-      <CarouselNext className="hover:cursor-pointer" />
+      <CarouselPrevious className="hover:cursor-pointer hidden sm:flex" />
+      <CarouselNext className="hover:cursor-pointer hidden sm:flex" />
     </Carousel>
   );
 };

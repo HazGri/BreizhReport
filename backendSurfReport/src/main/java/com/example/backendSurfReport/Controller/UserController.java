@@ -14,7 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://breizhreport.vercel.app"
+})
+
 @RequiredArgsConstructor
 public class UserController {
 

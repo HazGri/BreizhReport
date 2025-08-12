@@ -65,15 +65,26 @@ const NavBar = ({ spots }) => {
 
       <div className="flex-none">
         {token ? (
-          <button
-            className="btn btn-ghost bg-base-100 font-noto p-2 mx-2"
-            onClick={() => {
-              logout();
-              navigate("/");
-            }}
-          >
-            Déconnexion
-          </button>
+          <>
+            <img
+              src="assets/logout.svg"
+              className="h-8 sm:hidden cursor-pointer"
+              alt="logo deconnexion"
+              onClick={() => {
+                logout();
+                navigate("/");
+              }}
+            />
+            <button
+              className="btn btn-ghost bg-base-100 font-noto p-2 mx-2 hidden sm:block"
+              onClick={() => {
+                logout();
+                navigate("/");
+              }}
+            >
+              Déconnexion
+            </button>
+          </>
         ) : null}
       </div>
     </div>

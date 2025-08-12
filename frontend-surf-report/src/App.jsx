@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/spots")
+      .get("https://breizh-report-130fab00c3e0.herokuapp.com/api/spots")
       .then((response) => {
         setSpots(response.data);
       })
@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center w-full">
       <NavBar spots={spots} />
       <Routes>
         <Route path="/" element={<FinistereMap spots={spots} />} />

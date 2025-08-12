@@ -14,7 +14,7 @@ export const useFavoritesStore = create((set) => ({
 
     set({ loading: true, error: null });
     try {
-      const res = await axios.get("http://localhost:8080/api/user/favorites", {
+      const res = await axios.get("https://breizh-report-130fab00c3e0.herokuapp.com/api/user/favorites", {
         headers: { Authorization: `Bearer ${token}` },
       });
       set({ favorites: res.data, loading: false });
@@ -31,14 +31,14 @@ export const useFavoritesStore = create((set) => ({
 
     try {
       await axios.post(
-        `http://localhost:8080/api/user/favorites/toggle/${spotId}`,
+        `https://breizh-report-130fab00c3e0.herokuapp.com/api/user/favorites/toggle/${spotId}`,
         null,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
       // Après toggle, on refetch la liste des favoris
-      const res = await axios.get("http://localhost:8080/api/user/favorites", {
+      const res = await axios.get("https://breizh-report-130fab00c3e0.herokuapp.com/api/user/favorites", {
         headers: { Authorization: `Bearer ${token}` },
       });
       set({ favorites: res.data });

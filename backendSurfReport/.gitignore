@@ -1,0 +1,21 @@
+# Dossiers de build
+/target/
+/out/
+
+# Logs
+*.log
+
+# Config IDE
+*.iml
+.idea/
+.vscode/
+*.classpath
+*.project
+*.settings/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Variables d'environnement
+.env

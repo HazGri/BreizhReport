@@ -76,7 +76,7 @@ const SpotForecast = ({ spot, departement = 82 }) => {
 
   const imgUrl =
     lat && lng
-      ? `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/${lng},${lat},13/600x300?access_token=${apiKey}`
+      ? `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/${lng},${lat},15/600x300?access_token=${apiKey}`
       : null;
 
   // Chargement des données marées
@@ -85,7 +85,7 @@ const SpotForecast = ({ spot, departement = 82 }) => {
       setTide(null);
       return;
     }
-    const url = `http://localhost:8080/api/marees/${departement}`;
+    const url = `https://breizh-report-130fab00c3e0.herokuapp.com/api/marees/${departement}`;
     axios
       .get(url)
       .then((response) => {
@@ -146,11 +146,17 @@ const SpotForecast = ({ spot, departement = 82 }) => {
   const isLoading = !weather || !wind || !tide;
 
   if (error) return <p className="text-red-500">{error}</p>;
-  if (isLoading) return <p>Chargement des données météo...</p>;
+  if (isLoading)
+    return (
+      <div className="flex flex-col justify-center items-center mt-20">
+        <span className="loading loading-spinner loading-xl"></span>
+        <p>Chargement des données météo...</p>
+      </div>
+    );
 
   return (
     <>
-      <div className="w-11/12 flex-col items-center gap-5 lg:flex-row flex mt-10 mb-30">
+      <div className="w-11/12 flex-col items-center gap-20 md:flex-row flex mt-10 mb-30">
         <div className="md:w-5/12">
           <div className="flex items-center gap-3">
             <h1 className="text-white font-noto text-4xl">{spot.name}</h1>
@@ -162,7 +168,9 @@ const SpotForecast = ({ spot, departement = 82 }) => {
               size={32}
             />
           </div>
+          <p className="italic font-noto mt-4 rounded-2xl badge p-3">{spot.difficulty}</p>
           <p className="font-noto text-lg mt-10">{spot.description}</p>
+
           {imgUrl && (
             <img
               className="rounded-4xl mt-10 select-none"
@@ -173,7 +181,12 @@ const SpotForecast = ({ spot, departement = 82 }) => {
           )}
         </div>
 
-        <Carousel className="md:w-7/12">
+        <Carousel
+          className="md:w-7/12 w-full"
+          opts={{
+            watchDrag: false,
+          }}
+        >
           <CarouselContent>
             {fourDaysArray.map((day, index) => (
               <CarouselItem key={day}>
@@ -187,8 +200,20 @@ const SpotForecast = ({ spot, departement = 82 }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hover:cursor-pointer" />
-          <CarouselNext className="hover:cursor-pointer" />
+          <CarouselPrevious
+            className="
+    hover:cursor-pointer 
+    relative left-10 -bottom-6 
+    lg:absolute lg:-left-10 lg:bottom-auto
+  "
+          />
+          <CarouselNext
+            className="
+    hover:cursor-pointer 
+    relative left-[65%] -bottom-6 
+    lg:absolute lg:left-auto lg:bottom-auto
+  "
+          />
         </Carousel>
       </div>
       <FavoriteSpots />

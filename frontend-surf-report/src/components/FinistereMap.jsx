@@ -65,8 +65,8 @@ const FinistereMap = ({ spots }) => {
       if (features.length > 0) {
         const feature = features[0];
         const name = feature.properties.name;
-        const slug = createSlug(name); // "La Torche" -> "la-torche"
-        navigate(`/${slug}`); // ⬅️ redirection
+        const slug = createSlug(name);
+        navigate(`/${slug}`);
       }
     },
     [navigate]
@@ -74,7 +74,7 @@ const FinistereMap = ({ spots }) => {
 
   return (
     <>
-      <div className="relative mt-5 mb-10 flex flex-col w-10/12 sm:flex-row items-center justify-center gap-8 px-4">
+      <div className="relative mt-5 mb-10 flex flex-col mx-2 sm:flex-row items-center justify-center gap-8 w-9/12">
         <div className="sm:w-5/12 text-center sm:text-left">
           <div className="text-4xl sm:text-5xl font-bold font-noto text-white">
             Trouvez votre prochain spot en Bretagne !
@@ -104,7 +104,7 @@ const FinistereMap = ({ spots }) => {
             mapStyle="https://demotiles.maplibre.org/style.json"
             onMouseMove={handleMouseMove}
             onMouseLeave={() => setTooltip(null)}
-            onClick={handleClick} // 👈 ajoute ce handler
+            onClick={handleClick}
           >
             <Source id="spots" type="geojson" data={geojson}>
               <Layer {...layerStyle} />

@@ -8,14 +8,24 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://breizhreport.vercel.app"
+})
+
 @RestController
 public class MareeController {
 
     @GetMapping("/api/marees/{dep}")
     public Map<String, String> getMarees(@PathVariable String dep) throws IOException {
         String url = "https://maree.info/" + dep;
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url)
+                .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36")
+                .referrer("https://google.com")
+                .header("Accept-Language", "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7")
+                .timeout(10_000)
+                .get();
+
 
         Map<String, String> marees = new LinkedHashMap<>();
 

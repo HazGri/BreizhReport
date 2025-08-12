@@ -15,7 +15,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
+        "https://breizh-report-130fab00c3e0.herokuapp.com/api/auth/login",
         {
           email,
           password,
@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="flex justify-center w-10/12 sm:w-full">
       <form
         onSubmit={handleSubmit}
         className="fieldset bg-base-200 border-base-100 rounded-box w-md mt-[8%] border p-4"
@@ -57,7 +57,7 @@ const Login = () => {
         <input
           type="password"
           className="input rounded-2xl w-full my-2"
-          placeholder="Password"
+          placeholder="Mot de passe"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
@@ -68,7 +68,7 @@ const Login = () => {
           Connexion
         </button>
 
-        <Link to="/register" className="rounded-3xl btn btn-active mt-4">
+        <Link to="/register" className="rounded-3xl btn btn-white mt-4">
           Pas de compte ? Inscris-toi !
         </Link>
       </form>
@@ -84,7 +84,7 @@ const Login = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

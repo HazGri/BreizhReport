@@ -1,7 +1,7 @@
 import React from "react";
 
-
 const DayForecast = ({ day, weather, wind, spot, tide }) => {
+  
   const optimalDirection = spot.optimalDirection;
   const optimalWind = spot.wind;
   const optimalTide = spot.tide;
@@ -30,9 +30,9 @@ const DayForecast = ({ day, weather, wind, spot, tide }) => {
 
   return (
     <>
-      <div className="h-fit p-3 rounded-box overflow-scroll border border-base-content/5 bg-base-100 select-none">
+      <div className="p-3 rounded-box overflow-x-auto border border-base-content/5 bg-base-100 select-none">
         <h1 className="text-center m-3 font-noto">{day}</h1>
-        <table className="table table-fixed text-center">
+        <table className="table table-fixed text-center min-w-[700px]">
           {/* head */}
           <thead>
             <tr>
@@ -48,13 +48,14 @@ const DayForecast = ({ day, weather, wind, spot, tide }) => {
           </thead>
           <tbody>
             <tr>
-              <th className="flex justify-center items-center ">
+              <th className="flex justify-center items-center h-35">
                 <img
                   src="/assets/wave.svg"
                   alt="image d'une vague"
                   className="h-9"
                 />
               </th>
+
               <td>
                 <div className="flex justify-center items-center">
                   <img
@@ -171,7 +172,7 @@ const DayForecast = ({ day, weather, wind, spot, tide }) => {
             </tr>
             {/* row 2 */}
             <tr>
-              <th className="flex justify-center items-center ">
+              <th className="flex justify-center items-center h-25">
                 <img src="/assets/wind.svg" alt="" className="h-9" />
               </th>
               <td>
@@ -283,7 +284,7 @@ const DayForecast = ({ day, weather, wind, spot, tide }) => {
               </td>
             </tr>
             <tr>
-              <th className="flex justify-center items-center">
+              <th className="flex justify-center items-center h-25">
                 <img src="/assets/weather.svg" alt="" className="h-9" />
               </th>
               <td>
@@ -338,7 +339,6 @@ const DayForecast = ({ day, weather, wind, spot, tide }) => {
           </tbody>
         </table>
       </div>
-
     </>
   );
 };
